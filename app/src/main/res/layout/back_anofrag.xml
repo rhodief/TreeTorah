@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AnoFragment">
+
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="25dp"
+
+        >
+
+        <TableRow>
+            <TextView android:text="2008"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:background="#101533"
+                android:textColor="#ffff"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:layout_weight="1"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView android:text="Estado"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:background="#3f51b5"
+                android:textColor="#ffff"
+                android:layout_weight="1"/>
+            <TextView android:text="Árvores Cortadas"
+                android:layout_width="30dp"
+                android:layout_column="1"
+                android:background="#3f51b5"
+                android:textColor="#ffff"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+            </TextView>
+            <TextView android:text="Vol (m3)"
+                android:layout_width="30dp"
+                android:layout_column="2"
+                android:background="#3f51b5"
+                android:textColor="#ffff"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+            </TextView>
+            <TextView android:text="Árvores Resposta"
+                android:layout_width="30dp"
+                android:layout_column="2"
+                android:background="#3f51b5"
+                android:textColor="#ffff"
+                android:layout_weight="1">
+            </TextView>
+            <TextView android:text="Valor (R$)"
+                android:layout_width="30dp"
+                android:layout_column="2"
+                android:background="#3f51b5"
+                android:textColor="#ffff"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+            </TextView>
+        </TableRow>
+
+        <ScrollView android:layout_height="match_parent">
+            <TableLayout android:id="@+id/ano_table_content"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <TableRow>
+                    <TextView
+                        android:id="@+id/simple_text_row"
+                        android:layout_width="30px"
+                        android:layout_column="2"
+                        android:layout_weight="1">
+                    </TextView>
+                </TableRow>
+
+            </TableLayout>
+        </ScrollView>
+    </TableLayout>
+
+</FrameLayout>

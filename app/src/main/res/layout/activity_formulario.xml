@@ -24,7 +24,7 @@
         android:layout_height="wrap_content">
 
         <AutoCompleteTextView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/autocomplete_anos"
+            android:id="@+id/campo_ano"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimaryDark"
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content">
 
         <AutoCompleteTextView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/autocomplete_estados"
+            android:id="@+id/campo_estado"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimaryDark"
@@ -59,6 +59,7 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/campo_arvores_cortadas"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimaryDark"
@@ -74,6 +75,7 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/campo_diametro_maior"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimaryDark"
@@ -89,6 +91,7 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/campo_diametro_menor"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimaryDark"
@@ -99,11 +102,12 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/text_diametro_altura_layout"
+        android:id="@+id/text_altura_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/campo_altura"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimaryDark"
@@ -119,6 +123,7 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/campo_arvores_repostas"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimaryDark"
@@ -130,6 +135,7 @@
 
 
     <Button
+        android:id="@+id/botao_salvar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

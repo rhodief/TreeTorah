@@ -41,12 +41,12 @@ public class AtividadeExtrativa {
     }
 
 
-    public int getArvoresRespostas() {
+    public int getArvoresRepostas() {
         return arvoresRepostas;
     }
 
-    public void setArvoresRespostas(int arvoresRespostas) {
-        this.arvoresRepostas = arvoresRespostas;
+    public void setArvoresRepostas(int arvoresRepostas) {
+        this.arvoresRepostas = arvoresRepostas;
     }
 
     public String getValorASerPago() {

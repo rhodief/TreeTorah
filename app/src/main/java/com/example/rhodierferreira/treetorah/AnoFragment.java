@@ -13,6 +13,8 @@ import com.example.rhodierferreira.treetorah.helper.TableHelper;
 
 import java.util.ArrayList;
 
+import models.AtividadeExtrativa;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -106,13 +108,44 @@ public class AnoFragment extends Fragment {
     private void buildAnoTable(Context context, View view) {
         TableHelper table = new TableHelper(context, (TableLayout) view.findViewById(R.id.ano_table));
         ArrayList<String> row = new ArrayList();
-        row.add("Mato Grosso do Sul");
-        row.add("20000");
-        row.add("50000");
-        row.add("25000");
-        row.add("8500000");
-        table.addTitle("2008");
-        table.addRow(row);
+
+        // Mostrar 3 atividaes
+        AtividadeExtrativa atividadeExtrativa1 = new AtividadeExtrativa();
+        atividadeExtrativa1.setArvoresRepostas(3);
+        atividadeExtrativa1.setAltura(2);
+        atividadeExtrativa1.setDiametroMenor(1);
+        atividadeExtrativa1.setDiametroMaior(3);
+        atividadeExtrativa1.setArvoresRepostas(5);
+        atividadeExtrativa1.setEstado("ES - Espirito Santo");
+        atividadeExtrativa1.setAno("2018");
+
+        AtividadeExtrativa atividadeExtrativa2 = new AtividadeExtrativa();
+        atividadeExtrativa2.setArvoresRepostas(4);
+        atividadeExtrativa2.setAltura(4);
+        atividadeExtrativa2.setDiametroMenor(5);
+        atividadeExtrativa2.setDiametroMaior(8);
+        atividadeExtrativa2.setArvoresRepostas(9);
+        atividadeExtrativa2.setEstado("DF - Distrito Federal");
+        atividadeExtrativa2.setAno("2018");
+
+
+        AtividadeExtrativa atividadeExtrativa3 = new AtividadeExtrativa();
+        atividadeExtrativa3.setArvoresRepostas(3);
+        atividadeExtrativa3.setAltura(2);
+        atividadeExtrativa3.setDiametroMenor(1);
+        atividadeExtrativa3.setDiametroMaior(3);
+        atividadeExtrativa3.setArvoresRepostas(5);
+        atividadeExtrativa3.setEstado("SP - São Paulo");
+        atividadeExtrativa3.setAno("2019");
+
+        ArrayList<AtividadeExtrativa> atividades = new ArrayList();
+        atividades.add(atividadeExtrativa1);
+        atividades.add(atividadeExtrativa2);
+        atividades.add(atividadeExtrativa3);
+
+        // Fim da simulação
+
+        table.renderAno(atividades);
     }
 
     /**

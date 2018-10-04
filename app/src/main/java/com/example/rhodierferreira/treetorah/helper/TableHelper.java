@@ -14,6 +14,8 @@ import com.example.rhodierferreira.treetorah.MainActivity;
 
 import java.util.ArrayList;
 
+import models.AtividadeExtrativa;
+
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 
@@ -27,10 +29,32 @@ public class TableHelper {
         this.tableLayout = tableLayoutR;
     }
 
+    public void renderAno (ArrayList<AtividadeExtrativa>atividades){
+        // Mostra mensgem não houver Atividades Extrativas Cadastradas;
+        if(atividades.size() == 0) {
+            ArrayList<String> columns = new ArrayList();
+            columns.add("Não há Atividades Extrativas Registradas");
+            addRow(columns);
+            return;
+        }
+        // Renderização da Tabela....
+        String AnoRetentor = "";
+        for (int i = 0; i < atividades.size(); i++){
+            if(AnoRetentor != atividades.get(i).getAno()){
+                addTitle(atividades.get(i).getAno().toString());
+            }
+            AnoRetentor = atividades.get(i).getAno();
+
+
+        }
+    }
+
     public void addTitle(String title) {
+        //Espaço Antes
+        addBlankRow();
         // # Cabeçalho 1
         ArrayList<String> header = new ArrayList<>();
-        header.add("2018");
+        header.add(title);
         _addRow(header, "#FFFFFFFF", "#1a1c50");
 
         // # Cabeçalho 2
@@ -45,6 +69,12 @@ public class TableHelper {
 
     public void addRow(ArrayList<String> columns) {
         _addRow(columns, "", "");
+    }
+
+    public void addBlankRow() {
+        ArrayList<String> blank = new ArrayList<>();
+        blank.add(" ");
+        _addRow(blank, "#FFFFFFFF", "#FFFFFFFF");
     }
 
     private void _addRow(ArrayList<String> columns, String color, String backgroundColor) {

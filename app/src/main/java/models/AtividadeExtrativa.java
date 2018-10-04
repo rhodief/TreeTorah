@@ -6,7 +6,7 @@ public class AtividadeExtrativa {
     private String ano;
     private String estado;
     private int arvoresCortadas;
-    private int arvoresRespostas;
+    private int arvoresRepostas;
     private double diametroMaior;
     private double diametroMenor;
     private double altura;
@@ -42,11 +42,11 @@ public class AtividadeExtrativa {
 
 
     public int getArvoresRespostas() {
-        return arvoresRespostas;
+        return arvoresRepostas;
     }
 
     public void setArvoresRespostas(int arvoresRespostas) {
-        this.arvoresRespostas = arvoresRespostas;
+        this.arvoresRepostas = arvoresRespostas;
     }
 
     public String getValorASerPago() {

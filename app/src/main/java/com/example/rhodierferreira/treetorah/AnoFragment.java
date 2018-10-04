@@ -11,6 +11,8 @@ import android.widget.TableLayout;
 
 import com.example.rhodierferreira.treetorah.helper.TableHelper;
 
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -103,7 +105,12 @@ public class AnoFragment extends Fragment {
 
     private void buildAnoTable(Context context, View view) {
         TableHelper table = new TableHelper(context, (TableLayout) view.findViewById(R.id.ano_table));
-        String [] row = {"Mato Grosso do Sul", "20000", "50000", "25000", "8500000"};
+        ArrayList<String> row = new ArrayList();
+        row.add("Mato Grosso do Sul");
+        row.add("20000");
+        row.add("50000");
+        row.add("25000");
+        row.add("8500000");
         table.addTitle("2008");
         table.addRow(row);
     }

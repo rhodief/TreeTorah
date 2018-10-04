@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.example.rhodierferreira.treetorah.MainActivity;
 
+import java.util.ArrayList;
+
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 
@@ -26,40 +28,47 @@ public class TableHelper {
     }
 
     public void addTitle(String title) {
-        TableRow tr = new TableRow(context);
+        // # Cabeçalho 1
+        ArrayList<String> header = new ArrayList<>();
+        header.add("2018");
+        _addRow(header, "#FFFFFFFF", "#1a1c50");
 
-        TextView t = new TextView(context);
-        TableRow.LayoutParams rowParams = new TableRow.LayoutParams();
-        rowParams.width = 30;
-        rowParams.column = 30;
-        rowParams.weight = 30;
-        t.setBackgroundColor(Color.parseColor("#1a1c50"));
-        t.setTextColor(Color.parseColor("#ffff00"));
-
-
-        t.setTextSize(18);
-
-        t.setLayoutParams(rowParams);
-        t.setGravity(Gravity.CENTER);
-        t.setText(title);
-        tr.addView(t);
-
-
-        tableLayout.addView(tr);
+        // # Cabeçalho 2
+        ArrayList<String> newTitle = new ArrayList<>();
+        newTitle.add("Estado (UF)");
+        newTitle.add("Árv. Cortadas");
+        newTitle.add("Volume (m2)");
+        newTitle.add("Árv. Repostas");
+        newTitle.add("A Restituir");
+        _addRow(newTitle, "#FFFFFFFF", "#3f51b5");
     }
 
-    public void addRow(String[] columns) {
+    public void addRow(ArrayList<String> columns) {
+        _addRow(columns, "", "");
+    }
+
+    private void _addRow(ArrayList<String> columns, String color, String backgroundColor) {
         TableRow tr = new TableRow(context);
-        for (int i = 0; i < columns.length; i++) {
+        for (int i = 0; i < columns.size(); i++) {
             TextView t = new TextView(context);
             TableRow.LayoutParams rowParams = new TableRow.LayoutParams();
             rowParams.width = 30;
             rowParams.column = 30;
             rowParams.weight = 30;
+            if (backgroundColor != "") {
+                t.setBackgroundColor(Color.parseColor(backgroundColor));
+            }
+
+            if(color != "") {
+                t.setTextColor(Color.parseColor(color));
+            }
+
             t.setTextSize(18);
 
             t.setLayoutParams(rowParams);
-            t.setText(columns[i]);
+            t.setGravity(Gravity.CENTER);
+
+            t.setText(columns.get(i));
             tr.addView(t);
         }
 

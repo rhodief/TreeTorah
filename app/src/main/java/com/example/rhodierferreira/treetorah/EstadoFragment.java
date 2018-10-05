@@ -7,6 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
+
+import com.example.rhodierferreira.treetorah.helper.TableHelper;
+
+import java.util.ArrayList;
+
+import models.AtividadeExtrativa;
 
 
 /**
@@ -22,6 +29,9 @@ public class EstadoFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private ViewGroup SContainer;
+    private View Sview;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -63,8 +73,10 @@ public class EstadoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_estado, container, false);
+        View view = inflater.inflate(R.layout.fragment_estado, container, false);
+        SContainer = container;
+        Sview = view;
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -89,6 +101,20 @@ public class EstadoFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        buildEstadoTable(SContainer.getContext(), Sview);
+    }
+
+    private void buildEstadoTable(Context context, View view) {
+        TableHelper table = new TableHelper(context, (TableLayout) view.findViewById(R.id.estado_table));AtividadeExtrativaDAO atividades = new AtividadeExtrativaDAO(context);
+        ArrayList<AtividadeExtrativa> atividadesExtrativas = atividades.lista("estado");
+        atividades.close();
+
+        table.renderEstado(atividadesExtrativas);
     }
 
     /**

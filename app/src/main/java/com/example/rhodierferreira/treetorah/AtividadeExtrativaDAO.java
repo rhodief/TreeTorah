@@ -45,8 +45,8 @@ public class AtividadeExtrativaDAO extends SQLiteOpenHelper{
         db.insert("AtividadeExtrativa", null, dados );
     }
 
-    public ArrayList<AtividadeExtrativa> lista(String ordem)  {
-        String sql = "SELECT * FROM AtividadeExtrativa ORDER BY ano;";
+    public ArrayList<AtividadeExtrativa> lista(String ordemCampo)  {
+        String sql = "SELECT * FROM AtividadeExtrativa ORDER BY " + ordemCampo + ";";
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery(sql, null);
 

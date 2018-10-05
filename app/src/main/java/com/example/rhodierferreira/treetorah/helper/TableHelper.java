@@ -98,7 +98,7 @@ public class TableHelper {
         double tot_av_a_resp = 0;
         double tot_val_a_resp = 0;
         for (int i = 0; i < atividades.size(); i++){
-            if(EstadoRetentor != atividades.get(i).getEstado()){
+            if(EstadoRetentor.compareTo(atividades.get(i).getEstado()) != 0){
                 if(i != 0) {
                     addTotal(tot_av_cor, _round(tot_vol, 2), _round(tot_av_rep, 2), _round(tot_av_a_resp, 2), _round(tot_val_a_resp, 2));
                     tot_av_cor = 0;
@@ -107,7 +107,7 @@ public class TableHelper {
                     tot_av_a_resp = 0;
                     tot_val_a_resp = 0;
                 }
-                addTitle(atividades.get(i).getAno().toString(), "Ano Ext.");
+                addTitle(atividades.get(i).getEstado(), "Ano Ext.");
             }
             EstadoRetentor = atividades.get(i).getEstado();
 
@@ -206,7 +206,7 @@ public class TableHelper {
     //  "Estado (UF)"; "Árv. Cortadas"); "Volume (m2)"); "Árv. Repostas"); "A Restituir");
     public ArrayList<String>camposParaListaPorAno(AtividadeExtrativa atividadeExtrativa) {
         ArrayList<String> listaParaRetorno = new ArrayList<>();
-        listaParaRetorno.add(atividadeExtrativa.getEstado());
+        listaParaRetorno.add(atividadeExtrativa.getEstado().substring(0, 3));
         listaParaRetorno.add(String.valueOf(atividadeExtrativa.getArvoresCortadas()));
         listaParaRetorno.add(String.valueOf(atividadeExtrativa.getVolumeCortado()));
         listaParaRetorno.add(String.valueOf(atividadeExtrativa.getArvoresRepostas()));

@@ -110,7 +110,8 @@ public class EstadoFragment extends Fragment {
     }
 
     private void buildEstadoTable(Context context, View view) {
-        TableHelper table = new TableHelper(context, (TableLayout) view.findViewById(R.id.estado_table));AtividadeExtrativaDAO atividades = new AtividadeExtrativaDAO(context);
+        TableHelper table = new TableHelper(context, (TableLayout) view.findViewById(R.id.estado_table));
+        AtividadeExtrativaDAO atividades = new AtividadeExtrativaDAO(context);
         ArrayList<AtividadeExtrativa> atividadesExtrativas = atividades.lista("estado");
         atividades.close();
 

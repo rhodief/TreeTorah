@@ -4,9 +4,20 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import models.AtividadeExtrativa;
 
 
 /**
@@ -26,6 +37,11 @@ public class ListaFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ViewGroup SContainer;
+    private View Sview;
+
+    private ListView listaAtividades;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,7 +80,10 @@ public class ListaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lista, container, false);
+        View view = inflater.inflate(R.layout.fragment_lista, container, false);
+        SContainer = container;
+        Sview = view;
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -83,6 +102,35 @@ public class ListaFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        buildList();
+    }
+
+    private void buildList() {
+        AtividadeExtrativaDAO atividadesDAO = new AtividadeExtrativaDAO(SContainer.getContext());
+        ArrayList atividades = atividadesDAO.lista("ano");
+        listaAtividades = Sview.findViewById(R.id.lista_atividade);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(SContainer.getContext(), android.R.layout.simple_list_item_1, atividades);
+        listaAtividades.setAdapter(adapter);
+        registerForContextMenu(listaAtividades);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo)  {
+        MenuItem deletar = menu.add("Deletar");
+        deletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+                AtividadeExtrativa atividadeExtrativa = (AtividadeExtrativa) listaAtividades.getItemAtPosition(info.position);
+                Toast.makeText(getContext(), "Deletar A atividade" + atividadeExtrativa.getAno(), Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
     }
 
     @Override

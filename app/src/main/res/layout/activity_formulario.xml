@@ -13,7 +13,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="5dp"
-        android:text="Inserir Área de Atividade"
+        android:text="Inserir Atividade Extrativa"
         android:textColor="#3949ab"
         android:textSize="25sp"
         android:typeface="serif" />

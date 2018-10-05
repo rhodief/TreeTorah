@@ -99,6 +99,12 @@ public class AtividadeExtrativa {
         this.altura = altura;
     }
 
+    @Override
+    public String toString() {
+        super.toString();
+        return ano + " - " + estado + " - " + arvoresCortadas + " Árv. Cortadas";
+    }
+
     private static double _round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 

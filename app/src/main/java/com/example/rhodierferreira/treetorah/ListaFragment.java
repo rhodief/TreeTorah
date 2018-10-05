@@ -127,7 +127,10 @@ public class ListaFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem item) {
                 AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
                 AtividadeExtrativa atividadeExtrativa = (AtividadeExtrativa) listaAtividades.getItemAtPosition(info.position);
-                Toast.makeText(getContext(), "Deletar A atividade" + atividadeExtrativa.getAno(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Deletado a atividade " + atividadeExtrativa.getAno(), Toast.LENGTH_SHORT).show();
+                AtividadeExtrativaDAO atividadeExtrativaDAO = new AtividadeExtrativaDAO(getContext());
+                atividadeExtrativaDAO.deleta(atividadeExtrativa);
+                buildList();
                 return false;
             }
         });

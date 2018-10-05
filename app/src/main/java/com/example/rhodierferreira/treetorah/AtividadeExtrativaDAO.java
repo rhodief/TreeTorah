@@ -53,7 +53,7 @@ public class AtividadeExtrativaDAO extends SQLiteOpenHelper{
         ArrayList<AtividadeExtrativa> atividades = new ArrayList<AtividadeExtrativa>();
         while (c.moveToNext()) {
             AtividadeExtrativa atividade = new AtividadeExtrativa();
-            atividade.setId(Integer.parseInt(c.getString(c.getColumnIndex("ano"))));
+            atividade.setId(Integer.parseInt(c.getString(c.getColumnIndex("id"))));
             atividade.setAno(c.getString(c.getColumnIndex("ano")));
             atividade.setEstado(c.getString(c.getColumnIndex("estado")));
             atividade.setArvoresCortadas(Integer.parseInt(c.getString(c.getColumnIndex("arvores_cortadas"))));
@@ -61,14 +61,19 @@ public class AtividadeExtrativaDAO extends SQLiteOpenHelper{
             atividade.setDiametroMaior(Double.valueOf(c.getString(c.getColumnIndex("diametro_maior"))));
             atividade.setDiametroMenor(Double.valueOf(c.getString(c.getColumnIndex("diametro_menor"))));
             atividade.setAltura(Double.valueOf(c.getString(c.getColumnIndex("altura"))));
-            Log.d("Objeto", String.valueOf(atividade.getArvoresRepostas()));
             atividades.add(atividade);
 
         }
         c.close();
-
         return atividades;
+    }
 
+    public void deleta(AtividadeExtrativa atividadeExtrativa) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        String [] params = {String.valueOf(atividadeExtrativa.getId())};
+        db.delete("AtividadeExtrativa", "id = ?", params);
+        db.close();
     }
 
 }

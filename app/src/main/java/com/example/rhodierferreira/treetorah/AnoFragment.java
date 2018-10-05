@@ -111,37 +111,81 @@ public class AnoFragment extends Fragment {
 
         // Mostrar 3 atividaes
         AtividadeExtrativa atividadeExtrativa1 = new AtividadeExtrativa();
-        atividadeExtrativa1.setArvoresRepostas(3);
+        atividadeExtrativa1.setArvoresCortadas(3);
         atividadeExtrativa1.setAltura(2);
-        atividadeExtrativa1.setDiametroMenor(1);
-        atividadeExtrativa1.setDiametroMaior(3);
+        atividadeExtrativa1.setDiametroMenor(0.2);
+        atividadeExtrativa1.setDiametroMaior(0.3);
         atividadeExtrativa1.setArvoresRepostas(5);
         atividadeExtrativa1.setEstado("ES - Espirito Santo");
         atividadeExtrativa1.setAno("2018");
 
         AtividadeExtrativa atividadeExtrativa2 = new AtividadeExtrativa();
-        atividadeExtrativa2.setArvoresRepostas(4);
+        atividadeExtrativa2.setArvoresCortadas(4);
         atividadeExtrativa2.setAltura(4);
-        atividadeExtrativa2.setDiametroMenor(5);
-        atividadeExtrativa2.setDiametroMaior(8);
+        atividadeExtrativa2.setDiametroMenor(0.2);
+        atividadeExtrativa2.setDiametroMaior(0.3);
         atividadeExtrativa2.setArvoresRepostas(9);
         atividadeExtrativa2.setEstado("DF - Distrito Federal");
         atividadeExtrativa2.setAno("2018");
 
 
         AtividadeExtrativa atividadeExtrativa3 = new AtividadeExtrativa();
-        atividadeExtrativa3.setArvoresRepostas(3);
+        atividadeExtrativa3.setArvoresCortadas(3);
         atividadeExtrativa3.setAltura(2);
-        atividadeExtrativa3.setDiametroMenor(1);
-        atividadeExtrativa3.setDiametroMaior(3);
-        atividadeExtrativa3.setArvoresRepostas(5);
+        atividadeExtrativa3.setDiametroMenor(0.3);
+        atividadeExtrativa3.setDiametroMaior(0.4);
+        atividadeExtrativa3.setArvoresRepostas(0);
         atividadeExtrativa3.setEstado("SP - São Paulo");
         atividadeExtrativa3.setAno("2019");
+
+
+        AtividadeExtrativa atividadeExtrativa4 = new AtividadeExtrativa();
+        atividadeExtrativa4.setArvoresCortadas(3);
+        atividadeExtrativa4.setAltura(2);
+        atividadeExtrativa4.setDiametroMenor(0.3);
+        atividadeExtrativa4.setDiametroMaior(0.4);
+        atividadeExtrativa4.setArvoresRepostas(0);
+        atividadeExtrativa4.setEstado("SP - São Paulo");
+        atividadeExtrativa4.setAno("2019");
+
+
+        AtividadeExtrativa atividadeExtrativa5 = new AtividadeExtrativa();
+        atividadeExtrativa5.setArvoresCortadas(3);
+        atividadeExtrativa5.setAltura(2);
+        atividadeExtrativa5.setDiametroMenor(0.3);
+        atividadeExtrativa5.setDiametroMaior(0.4);
+        atividadeExtrativa5.setArvoresRepostas(0);
+        atividadeExtrativa5.setEstado("SP - São Paulo");
+        atividadeExtrativa5.setAno("2019");
+
+
+        AtividadeExtrativa atividadeExtrativa6 = new AtividadeExtrativa();
+        atividadeExtrativa6.setArvoresCortadas(3);
+        atividadeExtrativa6.setAltura(2);
+        atividadeExtrativa6.setDiametroMenor(0.3);
+        atividadeExtrativa6.setDiametroMaior(0.4);
+        atividadeExtrativa6.setArvoresRepostas(0);
+        atividadeExtrativa6.setEstado("SP - São Paulo");
+        atividadeExtrativa6.setAno("2019");
+
+
+        AtividadeExtrativa atividadeExtrativa7 = new AtividadeExtrativa();
+        atividadeExtrativa7.setArvoresCortadas(3);
+        atividadeExtrativa7.setAltura(2);
+        atividadeExtrativa7.setDiametroMenor(0.3);
+        atividadeExtrativa7.setDiametroMaior(0.4);
+        atividadeExtrativa7.setArvoresRepostas(0);
+        atividadeExtrativa7.setEstado("SP - São Paulo");
+        atividadeExtrativa7.setAno("2019");
 
         ArrayList<AtividadeExtrativa> atividades = new ArrayList();
         atividades.add(atividadeExtrativa1);
         atividades.add(atividadeExtrativa2);
         atividades.add(atividadeExtrativa3);
+        atividades.add(atividadeExtrativa4);
+        atividades.add(atividadeExtrativa5);
+        atividades.add(atividadeExtrativa6);
+        atividades.add(atividadeExtrativa7);
 
         // Fim da simulação
 

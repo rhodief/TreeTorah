@@ -1,5 +1,7 @@
 package models;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -11,7 +13,7 @@ public class AtividadeExtrativa {
     private double diametroMaior;
     private double diametroMenor;
     private double altura;
-
+    private double valorArvore = 0.75;
 
     public String getAno() {
         return ano;
@@ -37,8 +39,9 @@ public class AtividadeExtrativa {
         this.arvoresCortadas = arvoresCortadas;
     }
 
-    public String getVolumeCortado() {
-        return "volume cortado";
+    public double getVolumeCortado() {
+        //Para uma aproximação, calculamos o Volume da Tora com Base na Fórumula do Volume do Tronco de Cone
+        return _round((altura * 3.14 / 3) * (Math.pow(diametroMaior, 2) + diametroMaior * diametroMenor + Math.pow(diametroMenor, 2)), 2);
     }
 
 
@@ -50,8 +53,17 @@ public class AtividadeExtrativa {
         this.arvoresRepostas = arvoresRepostas;
     }
 
-    public String getValorASerPago() {
-        return "valor a ser pago";
+    //O valor-árvore é calculado por árvore cortada;
+    public Double getValorASerPago() {
+        if(arvoresRepostas != 0) {
+            return 0.0;
+        }
+        return arvoresCortadas * valorArvore;
+    }
+
+    // A quantidade a repor é com base no metro-cúbico da tora.
+    public Double getArvoresARepor() {
+        return _round(getVolumeCortado() * 6, 0) - arvoresRepostas;
     }
 
     public double getDiametroMaior() {
@@ -78,16 +90,14 @@ public class AtividadeExtrativa {
         this.altura = altura;
     }
 
-    // Retorna ArrayList de String na ordem ta tabela;
-    //  "Estado (UF)"; "Árv. Cortadas"); "Volume (m2)"); "Árv. Repostas"); "A Restituir");
-    public ArrayList<String>camposParaListaPorAno() {
-        ArrayList<String> listaParaRetorno = new ArrayList<>();
-        listaParaRetorno.add(getEstado());
-        listaParaRetorno.add(String.valueOf(getArvoresCortadas()));
-        listaParaRetorno.add(String.valueOf(getVolumeCortado()));
-        listaParaRetorno.add(String.valueOf(getArvoresRepostas()));
-        listaParaRetorno.add(String.valueOf(getValorASerPago()));
+    private static double _round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
 
-        return listaParaRetorno;
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
+
+
+
 }

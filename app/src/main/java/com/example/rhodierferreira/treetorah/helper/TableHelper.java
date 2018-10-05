@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.rhodierferreira.treetorah.MainActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import models.AtividadeExtrativa;
 
@@ -41,12 +42,25 @@ public class TableHelper {
         String AnoRetentor = "";
         for (int i = 0; i < atividades.size(); i++){
             if(AnoRetentor != atividades.get(i).getAno()){
+                if(i != 0) {
+                    addTotal();
+                }
                 addTitle(atividades.get(i).getAno().toString());
             }
             AnoRetentor = atividades.get(i).getAno();
 
-
+            //Insere as linhas
+            addRow(camposParaListaPorAno(atividades.get(i)));
+            if (atividades.size() == i +1) {
+                addTotal();
+            }
         }
+
+        addBlankRow();
+        addBlankRow();
+        addBlankRow();
+        addBlankRow();
+
     }
 
     public void addTitle(String title) {
@@ -55,29 +69,41 @@ public class TableHelper {
         // # Cabeçalho 1
         ArrayList<String> header = new ArrayList<>();
         header.add(title);
-        _addRow(header, "#FFFFFFFF", "#1a1c50");
+        _addRow(header, "#FFFFFFFF", "#1a1c50", null);
 
         // # Cabeçalho 2
         ArrayList<String> newTitle = new ArrayList<>();
         newTitle.add("Estado (UF)");
-        newTitle.add("Árv. Cortadas");
-        newTitle.add("Volume (m2)");
-        newTitle.add("Árv. Repostas");
-        newTitle.add("A Restituir");
-        _addRow(newTitle, "#FFFFFFFF", "#3f51b5");
+        newTitle.add("Árv. Cor");
+        newTitle.add("Vol (m2)");
+        newTitle.add("Árv. Rep");
+        newTitle.add("Árv a Res");
+        newTitle.add("R$ a Res");
+        _addRow(newTitle, "#FFFFFFFF", "#3f51b5", null);
     }
 
     public void addRow(ArrayList<String> columns) {
-        _addRow(columns, "", "");
+        _addRow(columns, "", "", null);
     }
 
     public void addBlankRow() {
         ArrayList<String> blank = new ArrayList<>();
         blank.add(" ");
-        _addRow(blank, "#FFFFFFFF", "#FFFFFFFF");
+        _addRow(blank, "#FFFFFFFF", "#FFFFFFFF", null);
     }
 
-    private void _addRow(ArrayList<String> columns, String color, String backgroundColor) {
+    public void addTotal() {
+        ArrayList<String> total = new ArrayList<>();
+        total.add(" ");
+        total.add("tot1");
+        total.add("tot2");
+        total.add("tot3");
+        total.add("tot4");
+        _addRow(total, "", "#FFD1D9DE", null);
+
+    }
+
+    private void _addRow(ArrayList<String> columns, String color, String backgroundColor, HashMap<Integer, String> colors) {
         TableRow tr = new TableRow(context);
         for (int i = 0; i < columns.size(); i++) {
             TextView t = new TextView(context);
@@ -87,6 +113,9 @@ public class TableHelper {
             rowParams.weight = 30;
             if (backgroundColor != "") {
                 t.setBackgroundColor(Color.parseColor(backgroundColor));
+            }
+            if(colors != null && colors.size() > 0 && colors.get(i) != null){
+                t.setBackgroundColor(Color.parseColor(colors.get(i)));
             }
 
             if(color != "") {
@@ -103,5 +132,19 @@ public class TableHelper {
         }
 
         tableLayout.addView(tr);
+    }
+
+    // Retorna ArrayList de String na ordem ta tabela;
+    //  "Estado (UF)"; "Árv. Cortadas"); "Volume (m2)"); "Árv. Repostas"); "A Restituir");
+    public ArrayList<String>camposParaListaPorAno(AtividadeExtrativa atividadeExtrativa) {
+        ArrayList<String> listaParaRetorno = new ArrayList<>();
+        listaParaRetorno.add(atividadeExtrativa.getEstado());
+        listaParaRetorno.add(String.valueOf(atividadeExtrativa.getArvoresCortadas()));
+        listaParaRetorno.add(String.valueOf(atividadeExtrativa.getVolumeCortado()));
+        listaParaRetorno.add(String.valueOf(atividadeExtrativa.getArvoresRepostas()));
+        listaParaRetorno.add(String.valueOf(atividadeExtrativa.getArvoresARepor()));
+        listaParaRetorno.add(String.valueOf(atividadeExtrativa.getValorASerPago()));
+
+        return listaParaRetorno;
     }
 }

@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements AnoFragment.OnFra
 
     private ListaFragment listaFragment;
 
+    public String teste;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 

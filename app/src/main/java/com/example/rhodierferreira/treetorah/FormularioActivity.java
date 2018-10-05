@@ -50,15 +50,16 @@ public class FormularioActivity extends AppCompatActivity {
         botaoSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast toast = Toast.makeText(FormularioActivity.this, "Aluno salvo!", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(FormularioActivity.this, "Atividade Extrativa Gravada!", Toast.LENGTH_SHORT);
                 TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
                 v.setTextColor(Color.RED);
 
                 // # Procedimento de Gravação
                 FormularioHelper formularioHelper = new FormularioHelper(FormularioActivity.this);
                 AtividadeExtrativa atividadeExtrativa = formularioHelper.pegaAtividadeExtrativa();
-
-
+                AtividadeExtrativaDAO atividadesDao = new AtividadeExtrativaDAO(FormularioActivity.this);
+                atividadesDao.insere(atividadeExtrativa);
+                atividadesDao.close();
                 // Mostrar o Toast e Fechar
 
                 toast.show();

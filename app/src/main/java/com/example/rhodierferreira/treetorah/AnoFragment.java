@@ -30,6 +30,10 @@ public class AnoFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private ViewGroup SContainer;
+    private View Sview;
+
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -71,7 +75,9 @@ public class AnoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ano, container, false);
-        buildAnoTable(container.getContext(), view);
+        SContainer = container;
+        Sview = view;
+        buildAnoTable(SContainer.getContext(), Sview);
         return view;
     }
 
@@ -94,6 +100,11 @@ public class AnoFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
@@ -107,9 +118,10 @@ public class AnoFragment extends Fragment {
 
     private void buildAnoTable(Context context, View view) {
         TableHelper table = new TableHelper(context, (TableLayout) view.findViewById(R.id.ano_table));
-        ArrayList<String> row = new ArrayList();
+
 
         // Mostrar 3 atividaes
+        /*
         AtividadeExtrativa atividadeExtrativa1 = new AtividadeExtrativa();
         atividadeExtrativa1.setArvoresCortadas(3);
         atividadeExtrativa1.setAltura(2);
@@ -188,8 +200,12 @@ public class AnoFragment extends Fragment {
         atividades.add(atividadeExtrativa7);
 
         // Fim da simulação
+        */
+        AtividadeExtrativaDAO atividades = new AtividadeExtrativaDAO(context);
+        ArrayList<AtividadeExtrativa> atividadesExtrativas = atividades.lista("teste");
+        atividades.close();
 
-        table.renderAno(atividades);
+        table.renderAno(atividadesExtrativas);
     }
 
     /**

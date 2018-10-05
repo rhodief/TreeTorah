@@ -3,6 +3,7 @@ package com.example.rhodierferreira.treetorah.helper;
 import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ public class TableHelper {
     private TableLayout tableLayout;
 
     public TableHelper(Context activity, TableLayout tableLayoutR) {
+        tableLayoutR.removeAllViewsInLayout();
         this.context = activity;
         this.tableLayout = tableLayoutR;
     }
@@ -48,7 +50,7 @@ public class TableHelper {
         double tot_av_a_resp = 0;
         double tot_val_a_resp = 0;
         for (int i = 0; i < atividades.size(); i++){
-            if(AnoRetentor != atividades.get(i).getAno()){
+            if(AnoRetentor.compareTo(atividades.get(i).getAno()) != 0){
                 if(i != 0) {
                     addTotal(tot_av_cor, _round(tot_vol, 2), _round(tot_av_rep, 2), _round(tot_av_a_resp, 2), _round(tot_val_a_resp, 2));
                     tot_av_cor = 0;
@@ -57,7 +59,7 @@ public class TableHelper {
                     tot_av_a_resp = 0;
                     tot_val_a_resp = 0;
                 }
-                addTitle(atividades.get(i).getAno().toString());
+                addTitle(atividades.get(i).getAno(), "Estado (UF)");
             }
             AnoRetentor = atividades.get(i).getAno();
 
@@ -80,7 +82,55 @@ public class TableHelper {
         _fechamento();
     }
 
-    public void addTitle(String title) {
+    public void renderEstado(ArrayList<AtividadeExtrativa>atividades) {
+        // Mostra mensgem não houver Atividades Extrativas Cadastradas;
+        if(atividades.size() == 0) {
+            ArrayList<String> columns = new ArrayList();
+            columns.add("Não há Atividades Extrativas Registradas");
+            addRow(columns);
+            return;
+        }
+        // Renderização da Tabela....
+        String EstadoRetentor = "";
+        Integer tot_av_cor = 0;
+        double tot_vol = 0;
+        double tot_av_rep = 0;
+        double tot_av_a_resp = 0;
+        double tot_val_a_resp = 0;
+        for (int i = 0; i < atividades.size(); i++){
+            if(EstadoRetentor != atividades.get(i).getEstado()){
+                if(i != 0) {
+                    addTotal(tot_av_cor, _round(tot_vol, 2), _round(tot_av_rep, 2), _round(tot_av_a_resp, 2), _round(tot_val_a_resp, 2));
+                    tot_av_cor = 0;
+                    tot_vol = 0;
+                    tot_av_rep = 0;
+                    tot_av_a_resp = 0;
+                    tot_val_a_resp = 0;
+                }
+                addTitle(atividades.get(i).getAno().toString(), "Ano Ext.");
+            }
+            EstadoRetentor = atividades.get(i).getEstado();
+
+            //Insere as linhas
+            addRow(camposParaListaPorEstado(atividades.get(i)));
+            tot_av_cor += atividades.get(i).getArvoresCortadas();
+            tot_vol += atividades.get(i).getVolumeCortado();
+            tot_av_rep += atividades.get(i).getArvoresRepostas();
+            tot_av_a_resp += atividades.get(i).getArvoresARepor();
+            tot_val_a_resp += atividades.get(i).getValorASerPago();
+            if (atividades.size() == i +1) {
+                addTotal(tot_av_cor, _round(tot_vol, 2), _round(tot_av_rep, 2), _round(tot_av_a_resp, 2), _round(tot_val_a_resp, 2));
+                tot_av_cor = 0;
+                tot_vol = 0;
+                tot_av_rep = 0;
+                tot_av_a_resp = 0;
+                tot_val_a_resp = 0;
+            }
+        }
+        _fechamento();
+    }
+
+    public void addTitle(String title, String primeiraColuna) {
         //Espaço Antes
         addBlankRow();
         // # Cabeçalho 1
@@ -90,7 +140,7 @@ public class TableHelper {
 
         // # Cabeçalho 2
         ArrayList<String> newTitle = new ArrayList<>();
-        newTitle.add("Estado (UF)");
+        newTitle.add(primeiraColuna);
         newTitle.add("Árv. Cor");
         newTitle.add("Vol (m2)");
         newTitle.add("Árv. Rep");
@@ -157,6 +207,18 @@ public class TableHelper {
     public ArrayList<String>camposParaListaPorAno(AtividadeExtrativa atividadeExtrativa) {
         ArrayList<String> listaParaRetorno = new ArrayList<>();
         listaParaRetorno.add(atividadeExtrativa.getEstado());
+        listaParaRetorno.add(String.valueOf(atividadeExtrativa.getArvoresCortadas()));
+        listaParaRetorno.add(String.valueOf(atividadeExtrativa.getVolumeCortado()));
+        listaParaRetorno.add(String.valueOf(atividadeExtrativa.getArvoresRepostas()));
+        listaParaRetorno.add(String.valueOf(atividadeExtrativa.getArvoresARepor()));
+        listaParaRetorno.add(String.valueOf(atividadeExtrativa.getValorASerPago()));
+
+        return listaParaRetorno;
+    }
+
+    public ArrayList<String>camposParaListaPorEstado(AtividadeExtrativa atividadeExtrativa) {
+        ArrayList<String> listaParaRetorno = new ArrayList<>();
+        listaParaRetorno.add(atividadeExtrativa.getAno());
         listaParaRetorno.add(String.valueOf(atividadeExtrativa.getArvoresCortadas()));
         listaParaRetorno.add(String.valueOf(atividadeExtrativa.getVolumeCortado()));
         listaParaRetorno.add(String.valueOf(atividadeExtrativa.getArvoresRepostas()));

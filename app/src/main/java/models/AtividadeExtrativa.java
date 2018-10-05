@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AtividadeExtrativa {
+    private int id;
     private String ano;
     private String estado;
     private int arvoresCortadas;
@@ -14,6 +15,14 @@ public class AtividadeExtrativa {
     private double diametroMenor;
     private double altura;
     private double valorArvore = 0.75;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getAno() {
         return ano;

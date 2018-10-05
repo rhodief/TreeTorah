@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.example.rhodierferreira.treetorah.MainActivity;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -40,10 +42,20 @@ public class TableHelper {
         }
         // Renderização da Tabela....
         String AnoRetentor = "";
+        Integer tot_av_cor = 0;
+        double tot_vol = 0;
+        double tot_av_rep = 0;
+        double tot_av_a_resp = 0;
+        double tot_val_a_resp = 0;
         for (int i = 0; i < atividades.size(); i++){
             if(AnoRetentor != atividades.get(i).getAno()){
                 if(i != 0) {
-                    addTotal();
+                    addTotal(tot_av_cor, _round(tot_vol, 2), _round(tot_av_rep, 2), _round(tot_av_a_resp, 2), _round(tot_val_a_resp, 2));
+                    tot_av_cor = 0;
+                    tot_vol = 0;
+                    tot_av_rep = 0;
+                    tot_av_a_resp = 0;
+                    tot_val_a_resp = 0;
                 }
                 addTitle(atividades.get(i).getAno().toString());
             }
@@ -51,16 +63,21 @@ public class TableHelper {
 
             //Insere as linhas
             addRow(camposParaListaPorAno(atividades.get(i)));
+            tot_av_cor += atividades.get(i).getArvoresCortadas();
+            tot_vol += atividades.get(i).getVolumeCortado();
+            tot_av_rep += atividades.get(i).getArvoresRepostas();
+            tot_av_a_resp += atividades.get(i).getArvoresARepor();
+            tot_val_a_resp += atividades.get(i).getValorASerPago();
             if (atividades.size() == i +1) {
-                addTotal();
+                addTotal(tot_av_cor, _round(tot_vol, 2), _round(tot_av_rep, 2), _round(tot_av_a_resp, 2), _round(tot_val_a_resp, 2));
+                tot_av_cor = 0;
+                tot_vol = 0;
+                tot_av_rep = 0;
+                tot_av_a_resp = 0;
+                tot_val_a_resp = 0;
             }
         }
-
-        addBlankRow();
-        addBlankRow();
-        addBlankRow();
-        addBlankRow();
-
+        _fechamento();
     }
 
     public void addTitle(String title) {
@@ -92,13 +109,14 @@ public class TableHelper {
         _addRow(blank, "#FFFFFFFF", "#FFFFFFFF", null);
     }
 
-    public void addTotal() {
+    public void addTotal(Integer t_av_cortada, double t_vol, double t_av_rep, double t_av_a_res, double t_val_res) {
         ArrayList<String> total = new ArrayList<>();
         total.add(" ");
-        total.add("tot1");
-        total.add("tot2");
-        total.add("tot3");
-        total.add("tot4");
+        total.add(String.valueOf(t_av_cortada));
+        total.add(String.valueOf(t_vol));
+        total.add(String.valueOf(t_av_rep));
+        total.add(String.valueOf(t_av_a_res));
+        total.add(String.valueOf(t_val_res));
         _addRow(total, "", "#FFD1D9DE", null);
 
     }
@@ -146,5 +164,18 @@ public class TableHelper {
         listaParaRetorno.add(String.valueOf(atividadeExtrativa.getValorASerPago()));
 
         return listaParaRetorno;
+    }
+
+    private void _fechamento() {
+        addBlankRow();
+        addBlankRow();
+    }
+
+    private static double _round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 }

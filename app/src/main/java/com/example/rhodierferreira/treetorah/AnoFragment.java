@@ -166,7 +166,7 @@ public class AnoFragment extends Fragment {
         atividadeExtrativa6.setDiametroMaior(0.4);
         atividadeExtrativa6.setArvoresRepostas(0);
         atividadeExtrativa6.setEstado("SP - São Paulo");
-        atividadeExtrativa6.setAno("2019");
+        atividadeExtrativa6.setAno("2020");
 
 
         AtividadeExtrativa atividadeExtrativa7 = new AtividadeExtrativa();
@@ -176,7 +176,7 @@ public class AnoFragment extends Fragment {
         atividadeExtrativa7.setDiametroMaior(0.4);
         atividadeExtrativa7.setArvoresRepostas(0);
         atividadeExtrativa7.setEstado("SP - São Paulo");
-        atividadeExtrativa7.setAno("2019");
+        atividadeExtrativa7.setAno("2020");
 
         ArrayList<AtividadeExtrativa> atividades = new ArrayList();
         atividades.add(atividadeExtrativa1);

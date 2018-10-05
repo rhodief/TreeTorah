@@ -63,7 +63,7 @@ public class AtividadeExtrativa {
 
     // A quantidade a repor é com base no metro-cúbico da tora.
     public Double getArvoresARepor() {
-        return _round(getVolumeCortado() * 6, 0) - arvoresRepostas;
+        return _round(getVolumeCortado() * 6, 2) - arvoresRepostas;
     }
 
     public double getDiametroMaior() {

@@ -144,8 +144,8 @@ public class TableHelper {
         newTitle.add("Árv. Cor");
         newTitle.add("Vol (m2)");
         newTitle.add("Árv. Rep");
-        newTitle.add("Árv a Res");
-        newTitle.add("R$ a Res");
+        newTitle.add("Árv a Rep");
+        newTitle.add("R$ a pagar");
         _addRow(newTitle, "#FFFFFFFF", "#3f51b5", null);
     }
 

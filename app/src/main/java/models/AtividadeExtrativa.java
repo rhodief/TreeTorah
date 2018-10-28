@@ -50,7 +50,7 @@ public class AtividadeExtrativa {
 
     public double getVolumeCortado() {
         //Para uma aproximação, calculamos o Volume da Tora com Base na Fórumula do Volume do Tronco de Cone
-        return _round((altura * 3.14 / 3) * (Math.pow(diametroMaior, 2) + diametroMaior * diametroMenor + Math.pow(diametroMenor, 2)), 2);
+        return _round(arvoresCortadas * (altura * 3.14 / 3) * (Math.pow(diametroMaior/2, 2) + diametroMaior/2 * diametroMenor/2 + Math.pow(diametroMenor/2, 2)), 2);
     }
 
 
